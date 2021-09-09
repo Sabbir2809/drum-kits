@@ -17,6 +17,43 @@ const playMusic = (path) => {
   audio.play();
 };
 
+// Theme 1
+const theme_1__background = "#091921";
+const theme_1__text = "#00fff1";
+
+// Theme 2
+const theme_2__background = "#f7c340";
+const theme_2__text = "#2d2d2d";
+
+let current_theme = "theme_1";
+
+// Theme Changer
+const change_theme = (theme) => {
+  let root = document.documentElement;
+  if (theme === "theme_1") {
+    root.style.setProperty("--background", theme_1__background);
+    root.style.setProperty("--text", theme_1__text);
+  } else {
+    root.style.setProperty("--background", theme_2__background);
+    root.style.setProperty("--text", theme_2__text);
+  }
+};
+
+const theme_changer = document.getElementById("util__button-theme");
+theme_changer.addEventListener("click", (e) => {
+  theme_changer.classList.add("change_theme_pressed");
+    setTimeout(() => {
+        theme_changer.classList.remove("change_theme_pressed");
+    }, 200)
+  if (current_theme == "theme_1") {
+    change_theme("theme_2");
+    current_theme = "theme_2";
+  } else {
+    change_theme("theme_1");
+    current_theme = "theme_1";
+  }
+});
+
 var auto_music_id;
 var auto_music_on = false;
 
